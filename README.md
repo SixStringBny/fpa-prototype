@@ -25,6 +25,14 @@ The full moderator kit lives in [`docs/TEST-KIT.md`](docs/TEST-KIT.md).
 
 ---
 
+## Visual tour
+
+![Launchpad end-to-end showcase](docs/showcase/launchpad-showcase.gif)
+
+A screenshot walkthrough of the full journey — discover, sign in, learn, match, book and keep track — lives in [`docs/showcase/`](docs/showcase/README.md). It includes desktop and mobile stills plus a captioned showcase GIF.
+
+---
+
 ## Commands
 
 ```bash
@@ -42,6 +50,9 @@ npm run build
 
 # preview the production build
 npm run preview
+
+# regenerate the visual tour (screenshots + showcase GIF)
+npm run showcase
 ```
 
 The build is a static site in `dist/`.

@@ -7,9 +7,9 @@ import { MobileNav } from './MobileNav'
 function titleFor(pathname: string): string {
   if (pathname.startsWith('/app/dashboard')) return 'Dashboard'
   if (pathname.startsWith('/app/learn')) {
-    const parts = pathname.split('/')
-    if (parts.length > 3) return 'Lesson'
-    if (parts.length > 2) return 'Module'
+    const parts = pathname.split('/').filter(Boolean)
+    if (parts.length >= 4) return 'Lesson'
+    if (parts.length === 3) return 'Module'
     return 'Learn'
   }
   if (pathname.startsWith('/app/mentors')) {
