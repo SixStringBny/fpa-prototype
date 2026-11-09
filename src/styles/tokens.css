@@ -1,0 +1,135 @@
+/* Launchpad design tokens — the single source of truth for colour, type,
+   spacing, shape and motion. Components consume these variables only. */
+:root {
+  /* Brand */
+  --navy-900: #0e1830;
+  --navy-800: #16243d;
+  --navy-700: #1f3354;
+  --navy-600: #2a4268;
+  --teal-500: #3ec6b0;
+  --teal-600: #2fb39e;
+  --teal-700: #1d8577;
+  --teal-100: #ddf6f1;
+  --purple-500: #6c4ee3;
+  --purple-600: #5a3ecd;
+  --purple-100: #ede9fe;
+  --amber-500: #f2b84b;
+  --amber-600: #c98a1b;
+  --amber-100: #fef3c7;
+  --blue-500: #2e90fa;
+  --blue-600: #1570ef;
+  --blue-100: #dbeafe;
+  --rose-500: #e31b54;
+  --rose-600: #c01048;
+  --rose-100: #ffe4e8;
+  --green-500: #12b76a;
+  --green-600: #067647;
+  --green-100: #d1fadf;
+
+  /* Neutrals */
+  --ink-900: #101828;
+  --ink-800: #1d2939;
+  --ink-700: #475467;
+  --ink-600: #667085;
+  --ink-500: #98a2b3;
+  --line: #e4e7ec;
+  --line-strong: #d0d5dd;
+  --surface: #ffffff;
+  --surface-muted: #f9fafb;
+  --canvas: #f5f6f8;
+
+  /* Status */
+  --success: #12b76a;
+  --success-soft: #d1fadf;
+  --warning: #f79009;
+  --warning-soft: #fef0c7;
+  --danger: #f04438;
+  --danger-soft: #fee4e2;
+
+  /* Typography */
+  --font-display: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+  --font-body: 'Inter Variable', 'Inter', system-ui, sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.5rem;
+  --text-4xl: clamp(2.4rem, 4.5vw + 1rem, 3.5rem);
+  --text-hero: clamp(2.75rem, 6vw + 1rem, 4.75rem);
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Shape */
+  --radius-sm: 8px;
+  --radius-control: 12px;
+  --radius-card: 20px;
+  --radius-panel: 32px;
+  --radius-pill: 999px;
+
+  /* Elevation */
+  --shadow-xs: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --shadow-sm: 0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 8px 24px rgba(14, 24, 48, 0.08);
+  --shadow-lg: 0 20px 48px rgba(14, 24, 48, 0.14);
+
+  /* Motion */
+  --transition: 180ms ease-out;
+  --transition-slow: 240ms ease-out;
+
+  /* Layout */
+  --container: 1200px;
+  --header-height: 72px;
+  --sidebar-width: 264px;
+  --topbar-height: 72px;
+}
+
+[data-accent='teal'] {
+  --accent: #0f9c88;
+  --accent-strong: #0b7f70;
+  --accent-soft: var(--teal-100);
+}
+
+[data-accent='purple'] {
+  --accent: var(--purple-500);
+  --accent-strong: var(--purple-600);
+  --accent-soft: var(--purple-100);
+}
+
+[data-accent='amber'] {
+  --accent: var(--amber-600);
+  --accent-strong: #a86f0f;
+  --accent-soft: var(--amber-100);
+}
+
+[data-accent='blue'] {
+  --accent: var(--blue-600);
+  --accent-strong: #0f5ccf;
+  --accent-soft: var(--blue-100);
+}
+
+[data-accent='rose'] {
+  --accent: var(--rose-600);
+  --accent-strong: #9e0d3a;
+  --accent-soft: var(--rose-100);
+}
+
+[data-accent='green'] {
+  --accent: var(--green-600);
+  --accent-strong: #05603a;
+  --accent-soft: var(--green-100);
+}
