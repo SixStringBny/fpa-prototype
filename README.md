@@ -10,6 +10,7 @@ This is a working prototype for moderated usability testing — not production s
 
 ## Demo
 
+- **Hosted prototype:** <https://sixstringbny.github.io/fpa-prototype/>
 - **Local URL:** `http://localhost:5173/`
 - **Mock sign-in:** `/#/login` — use **Continue as test user**
 - **Style guide:** `/#/styleguide` (internal, not linked in navigation)
