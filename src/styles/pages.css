@@ -1,4 +1,4 @@
-/* Marketing pages, shared content cards, auth and 404. */
+﻿/* Marketing pages, shared content cards, auth and 404. */
 
 /* Hero ------------------------------------------------------------------- */
 
@@ -8,12 +8,12 @@
   background:
     radial-gradient(
       circle at 85% 10%,
-      rgba(62, 198, 176, 0.18),
+      rgba(83, 103, 232, 0.18),
       transparent 45%
     ),
     radial-gradient(
       circle at 8% 90%,
-      rgba(108, 78, 227, 0.16),
+      rgba(200, 181, 245, 0.16),
       transparent 42%
     ),
     var(--navy-900);
@@ -26,6 +26,12 @@
   gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
   padding-block: clamp(3rem, 7vw, 6rem);
+}
+
+.hero .eyebrow,
+.page-hero .eyebrow,
+.cta-band .eyebrow {
+  color: var(--brand-lavender);
 }
 
 .hero__copy h1 {
@@ -68,7 +74,7 @@
 }
 
 .hero__note-item svg {
-  color: var(--teal-500);
+  color: var(--brand-lavender);
 }
 
 .hero__media {
@@ -137,7 +143,7 @@
   background:
     radial-gradient(
       circle at 80% 20%,
-      rgba(62, 198, 176, 0.16),
+      rgba(83, 103, 232, 0.16),
       transparent 45%
     ),
     var(--navy-900);
@@ -358,7 +364,7 @@
   background:
     radial-gradient(
       circle at 90% 20%,
-      rgba(62, 198, 176, 0.28),
+      rgba(83, 103, 232, 0.28),
       transparent 40%
     ),
     var(--navy-900);
@@ -750,7 +756,7 @@
   background:
     radial-gradient(
       circle at 80% 15%,
-      rgba(62, 198, 176, 0.24),
+      rgba(83, 103, 232, 0.24),
       transparent 42%
     ),
     var(--navy-900);

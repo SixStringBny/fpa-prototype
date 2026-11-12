@@ -1,7 +1,7 @@
 import type { DemoState } from '../types'
 import { seedState } from './seed'
 
-export const STORAGE_KEY = 'launchpad.demo.v1'
+export const STORAGE_KEY = 'launchpad.demo.v2'
 
 function isObject(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null
@@ -13,7 +13,7 @@ function isObject(value: unknown): value is Record<string, unknown> {
  */
 export function isValidState(value: unknown): value is DemoState {
   if (!isObject(value)) return false
-  if (value.version !== 1) return false
+  if (value.version !== 2) return false
 
   const auth = value.auth
   if (!isObject(auth) || typeof auth.isAuthenticated !== 'boolean') return false
@@ -33,6 +33,10 @@ export function isValidState(value: unknown): value is DemoState {
   if (!Array.isArray(value.savedMentorIds)) return false
   if (!Array.isArray(value.bookings)) return false
   if (!isObject(value.progress)) return false
+  if (!Array.isArray(value.savedOpportunityIds)) return false
+  if (!Array.isArray(value.appliedOpportunityIds)) return false
+  if (!Array.isArray(value.portfolioProjects)) return false
+  if (!Array.isArray(value.endorsedCommunityPostIds)) return false
   if (typeof value.seededAt !== 'string') return false
 
   return true

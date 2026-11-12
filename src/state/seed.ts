@@ -1,5 +1,6 @@
 import type { DemoState } from '../types'
 import { testUserProfile } from '../data/user'
+import { seedPortfolioProjects } from '../data/portfolio'
 import { addDays } from '../lib/dates'
 
 /**
@@ -14,7 +15,7 @@ export function seedState(): DemoState {
   const seededAt = now.toISOString()
 
   return {
-    version: 1,
+    version: 2,
     auth: { isAuthenticated: false, userId: 'test-user' },
     profile: {
       ...testUserProfile,
@@ -42,6 +43,10 @@ export function seedState(): DemoState {
         updatedAt: seededAt,
       },
     },
+    savedOpportunityIds: ['opp-cafe-menu'],
+    appliedOpportunityIds: [],
+    portfolioProjects: seedPortfolioProjects,
+    endorsedCommunityPostIds: [],
     seededAt,
   }
 }

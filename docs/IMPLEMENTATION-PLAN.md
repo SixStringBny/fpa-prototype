@@ -1,18 +1,19 @@
-# Launchpad Prototype — Implementation Plan
+# LaunchPad Prototype — Implementation Plan
 
 - **Repo:** `SixStringBny/fpa-prototype`
-- **Product name:** Launchpad (single casing)
-- **Status:** Agreed scope; ready to land in repo and create tracking issues
+- **Product name:** LaunchPad (FPA33502 casing and brand)
+- **Status:** v0.2.0 shipped; the fidelity pass in [`FIDELITY-PLAN.md`](FIDELITY-PLAN.md) is implemented
 - **Target effort:** 3–5 working days
 - **Primary purpose:** Moderated usability testing with design/creative graduates
 - **Secondary purpose:** Portfolio/demo piece
-- **Source material:** `design-docs/fpa-prototype-old.pdf`, `design-docs/Low-fidelity-sketch-fpa-prototype.png`
+- **Source material:** `design-docs/FPA33501_Process.pdf`, `design-docs/BenjaminMcCusker_FPA33502_24ZTF40_Process.pdf`, `design-docs/fpa-prototype-old.pdf`, `design-docs/Low-fidelity-sketch-fpa-prototype.png`
+- **Research alignment:** [`RESEARCH-ALIGNMENT.md`](RESEARCH-ALIGNMENT.md) records how the prototype maps to the research; [`FIDELITY-PLAN.md`](FIDELITY-PLAN.md) closes the gaps, and [`PROGRESS.md`](PROGRESS.md) records verification.
 
 ---
 
 ## 1. Summary
 
-Build one cohesive, static React prototype of **Launchpad**, a platform that helps design/creative graduates move into freelance work through self-paced learning and mentorship.
+Build one cohesive, static React prototype of **LaunchPad**, a platform that helps design/creative graduates move into freelance work through self-paced learning and mentorship.
 
 The prototype covers the full journey:
 
@@ -66,6 +67,8 @@ A participant can complete the three core tasks without facilitator intervention
 
 ## 3. Agreed decisions
 
+> **Fidelity-pass note:** Decisions 6, 7, 18, 20 and 22 were revisited in [`FIDELITY-PLAN.md`](FIDELITY-PLAN.md) and implemented on the `fidelity-pass` branch. The pass added a lightweight roadmap and the FPA33502 brand; the alternative visual variant remains deferred.
+
 | # | Decision | Choice |
 |---|---|---|
 | 1 | Prototype count | One complete prototype now; visual variant later after feedback |
@@ -89,7 +92,7 @@ A participant can complete the three core tasks without facilitator intervention
 | 19 | Accessibility | WCAG 2.2 AA-minded |
 | 20 | Auth | Mock sign-in only, with "Continue as test user"; no onboarding questionnaire |
 | 21 | Audience | Design/creative graduates entering freelance work |
-| 22 | Locale | South African English; ZAR where pricing appears; "Launchpad" |
+| 22 | Locale | South African English; ZAR where pricing appears; "LaunchPad" (FPA33502 casing) |
 | 23 | Logged-in nav | Home, Learn, Mentors, Sessions, Saved, Profile |
 | 24 | Test materials | Lightweight moderator kit in `docs/TEST-KIT.md` |
 | 25 | Repo visibility | Make the repo public and use GitHub Pages |
@@ -177,7 +180,7 @@ Success: participant locates **Saved** in the sidebar or the saved section on th
 
 ### Marketing navigation
 
-`Launchpad` logo · Learn · Mentorship · About · Log in / Sign up · **Get Started**
+`LaunchPad` logo · Learn · Mentorship · About · Log in / Sign up · **Get Started**
 
 - "Get Started" and "Log in / Sign up" both lead to `/login`.
 - Authenticated visitors see an avatar menu instead of "Log in / Sign up".
@@ -241,7 +244,7 @@ Buttons on teal use navy text for contrast. White text is reserved for navy/purp
 
 ### Typography
 
-- Display/headings: **Archivo Variable** (bundled via `@fontsource-variable/archivo`), weights 600–800.
+- Display/headings: **Manrope Variable** (bundled via `@fontsource-variable/manrope`), weights 600–800.
 - Body/UI: **Inter Variable** (bundled via `@fontsource-variable/inter`), weights 400–600.
 - Type scale: 12 / 14 / 16 / 18 / 24 / 32 / 40 / 56 px, with fluid `clamp()` for hero headings.
 - Headings use tight leading and slightly negative tracking; body uses 1.6 line height.
@@ -278,7 +281,7 @@ Lucide React, 20/24 px, 1.75–2 px stroke, currentColor.
 | Routing | React Router 7 with `HashRouter` (GitHub Pages-safe) |
 | Styling | Plain CSS with custom properties; CSS Modules where component-scoped styles help |
 | Icons | `lucide-react` |
-| Fonts | `@fontsource-variable/archivo`, `@fontsource-variable/inter` |
+| Fonts | `@fontsource-variable/manrope`, `@fontsource-variable/inter` |
 | State | React Context + reducer, persisted to `localStorage` |
 | Tests | None in scope; `tsc --noEmit` and production build are the gates |
 
@@ -528,7 +531,7 @@ type DemoState = {
 
 ### State and persistence
 
-- One versioned key: `launchpad.demo.v1`.
+- One versioned key: `launchpad.demo.v2`.
 - `loadState()` validates shape, falls back to `seedState()` on missing/corrupt/version mismatch.
 - `DemoStateProvider` exposes state + actions:
   - `login()`, `logout()`
@@ -549,7 +552,7 @@ type DemoState = {
   - 1 saved mentor: Lucas Meyer.
   - 1 upcoming session: Amina Yusuf, 2 days from first load, 30 min, free.
 - Stale dates: an upcoming booking whose `startsAt` is in the past renders as "Completed" in Sessions and is excluded from Dashboard upcoming.
-- `Reset demo` removes `launchpad.demo.v1`, then reloads to `/app/dashboard` (or `/login` if logged out).
+- `Reset demo` removes `launchpad.demo.v2`, then reloads to `/app/dashboard` (or `/login` if logged out).
 
 ### Auth and route guards
 
@@ -657,7 +660,7 @@ Each phase is a shippable slice with its own demo checkpoint. Phases map 1:1 to 
 **Tasks**
 
 - [ ] Scaffold Vite React + TypeScript in the repo (manual scaffold is fine; preserve `design-docs/`).
-- [ ] Install runtime deps: `react`, `react-dom`, `react-router-dom`, `lucide-react`, `@fontsource-variable/archivo`, `@fontsource-variable/inter`.
+- [ ] Install runtime deps: `react`, `react-dom`, `react-router-dom`, `lucide-react`, `@fontsource-variable/manrope`, `@fontsource-variable/inter`.
 - [ ] Install dev deps: `vite`, `@vitejs/plugin-react`, `typescript`, `@types/react`, `@types/react-dom`.
 - [ ] Add scripts: `dev`, `build`, `preview`, `typecheck`.
 - [ ] Configure strict `tsconfig.json` and `vite.config.ts` with `base` from `VITE_BASE` (default `/`).
@@ -941,7 +944,7 @@ Each phase is a shippable slice with its own demo checkpoint. Phases map 1:1 to 
 
 - [ ] Responsive QA at 375/768/1024/1440 for every route.
 - [ ] Accessibility pass: keyboard-only walkthrough, focus order, labels, contrast, reduced motion, alt text, dialog behaviour.
-- [ ] Content/copy pass: South African English, consistent "Launchpad", ZAR, no placeholder text.
+- [ ] Content/copy pass: South African English, consistent "LaunchPad", ZAR, no placeholder text.
 - [ ] Image optimisation and lazy loading below the fold.
 - [ ] 404, loading and error boundaries.
 - [ ] Remove dead links and non-functional controls that look functional.
@@ -1085,7 +1088,7 @@ The prototype is done when:
 
 Full version lives in `docs/TEST-KIT.md` after Phase 8.
 
-**Intro (read aloud):** "Thanks for helping. This is an early prototype of Launchpad, a platform for design graduates moving into freelance work. There are no wrong answers, and nothing you do can break it. I'll give you three tasks; please think aloud as you go. I'm testing the design, not you."
+**Intro (read aloud):** "Thanks for helping. This is an early prototype of LaunchPad, a platform for design graduates moving into freelance work. There are no wrong answers, and nothing you do can break it. I'll give you three tasks; please think aloud as you go. I'm testing the design, not you."
 
 **Tasks**
 
@@ -1097,7 +1100,7 @@ Full version lives in `docs/TEST-KIT.md` after Phase 8.
 
 **Note sheet columns:** Participant · Task · Start/end · Success (Y / assisted / N) · Path taken · Hesitation/quotes · Severity (low/medium/high).
 
-**Between participants:** open the sidebar → **Reset demo** → confirm, or clear the `launchpad.demo.v1` key.
+**Between participants:** open the sidebar → **Reset demo** → confirm, or clear the `launchpad.demo.v2` key.
 
 **Reminders:** do not lead with screen names; ask participants to think aloud; record observations, not interpretations; stop the task after a reasonable attempt.
 
@@ -1122,7 +1125,7 @@ npm run build
 npm run preview
 
 # reset demo data from the browser console (alternative to the UI control)
-localStorage.removeItem('launchpad.demo.v1'); location.reload();
+localStorage.removeItem('launchpad.demo.v2'); location.reload();
 ```
 
 GitHub:

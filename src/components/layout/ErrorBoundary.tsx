@@ -24,7 +24,7 @@ export class ErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
-    console.error('Launchpad render error', error, info.componentStack)
+    console.error('LaunchPad render error', error, info.componentStack)
   }
 
   render() {

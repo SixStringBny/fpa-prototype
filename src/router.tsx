@@ -17,6 +17,12 @@ import { DashboardPage } from './features/dashboard/DashboardPage'
 import { SessionsPage } from './features/dashboard/SessionsPage'
 import { SavedPage } from './features/dashboard/SavedPage'
 import { ProfilePage } from './features/dashboard/ProfilePage'
+import { RoadmapPage } from './features/dashboard/RoadmapPage'
+import { OpportunitiesPage } from './features/opportunities/OpportunitiesPage'
+import { OpportunityPage } from './features/opportunities/OpportunityPage'
+import { PortfolioPage } from './features/portfolio/PortfolioPage'
+import { PortfolioProjectPage } from './features/portfolio/PortfolioProjectPage'
+import { CommunityPage } from './features/community/CommunityPage'
 import { StyleguidePage } from './features/styleguide/StyleguidePage'
 
 export function AppRouter() {
@@ -55,6 +61,12 @@ export function AppRouter() {
               path="mentors/:mentorSlug/book"
               element={<BookingPage />}
             />
+            <Route path="opportunities" element={<OpportunitiesPage />} />
+            <Route path="opportunities/:slug" element={<OpportunityPage />} />
+            <Route path="portfolio" element={<PortfolioPage />} />
+            <Route path="portfolio/:projectId" element={<PortfolioProjectPage />} />
+            <Route path="roadmap" element={<RoadmapPage />} />
+            <Route path="community" element={<CommunityPage />} />
             <Route path="sessions" element={<SessionsPage />} />
             <Route path="saved" element={<SavedPage />} />
             <Route path="profile" element={<ProfilePage />} />

@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 import {
   ArrowRight,
   BookOpen,
+  Briefcase,
   CalendarDays,
   CheckCircle2,
   Clock,
   Compass,
   ExternalLink,
+  MessagesSquare,
   PlayCircle,
   Users,
   Video,
@@ -17,17 +19,24 @@ import type {
   LearnerProfile,
   Mentor,
   Module,
+  Opportunity,
+  PortfolioProject,
+  RoadmapMilestone,
   TailoredResource,
 } from '../../types'
+import { getMentorById } from '../../data/mentors'
+import { opportunityTypeLabel } from '../../data/opportunities'
 import {
   formatDateLong,
   formatDayMonth,
   formatTime,
   relativeDayLabel,
 } from '../../lib/dates'
+import { formatZar } from '../../lib/format'
 import { Avatar } from '../../components/ui/Avatar'
 import { Badge } from '../../components/ui/Badge'
 import { Button } from '../../components/ui/Button'
+import { EmptyState } from '../../components/ui/EmptyState'
 import { ProgressBar } from '../../components/ui/ProgressBar'
 import { StatCard } from '../../components/shared/StatCard'
 import { moduleIcon } from '../../components/shared/ModuleCard'
@@ -71,7 +80,7 @@ export function DashboardHero({
               Start a module
             </Link>
           )}
-          <Link className="btn btn--ghost-light" to="/app/mentors">
+          <Link className="btn btn--secondary" to="/app/mentors">
             Find a mentor
           </Link>
         </div>
@@ -433,6 +442,229 @@ export function QuickLinksCard({ profileComplete }: { profileComplete: boolean }
         <Clock size={13} aria-hidden="true" style={{ display: 'inline', marginRight: 4 }} />
         Tip: work through one lesson before your next session.
       </p>
+    </section>
+  )
+}
+
+export function RoadmapCard({
+  milestones,
+}: {
+  milestones: RoadmapMilestone[]
+}) {
+  const currentIndex = milestones.findIndex((milestone) => !milestone.complete)
+
+  return (
+    <section className="dashboard-card">
+      <div className="dashboard-card__header">
+        <h2 className="dashboard-card__title">Your path</h2>
+        <Link className="dashboard-card__link" to="/app/roadmap">
+          View path
+          <ArrowRight size={14} aria-hidden="true" />
+        </Link>
+      </div>
+      <ol className="roadmap-compact">
+        {milestones.map((milestone, index) => {
+          const isCurrent = index === currentIndex
+          return (
+            <li key={milestone.id}>
+              <Link
+                className={`roadmap-compact__item${milestone.complete ? ' roadmap-compact__item--done' : ''}${isCurrent ? ' roadmap-compact__item--current' : ''}`}
+                to={milestone.href}
+              >
+                <span className="roadmap-compact__marker" aria-hidden="true">
+                  {milestone.complete ? (
+                    <CheckCircle2 size={18} />
+                  ) : (
+                    index + 1
+                  )}
+                </span>
+                <span className="roadmap-compact__body">
+                  <span className="roadmap-compact__title">
+                    {milestone.title}
+                  </span>
+                  {isCurrent ? (
+                    <span className="roadmap-compact__hint">
+                      {milestone.description}
+                    </span>
+                  ) : null}
+                </span>
+                {isCurrent ? (
+                  <Badge tone="blue">Next</Badge>
+                ) : null}
+              </Link>
+            </li>
+          )
+        })}
+      </ol>
+    </section>
+  )
+}
+
+export function OpportunitiesCard({
+  opportunities,
+  savedIds,
+}: {
+  opportunities: Opportunity[]
+  savedIds: string[]
+}) {
+  return (
+    <section className="dashboard-card">
+      <div className="dashboard-card__header">
+        <h2 className="dashboard-card__title">Opportunities for you</h2>
+        <Link className="dashboard-card__link" to="/app/opportunities">
+          All opportunities
+          <ArrowRight size={14} aria-hidden="true" />
+        </Link>
+      </div>
+      <ul className="mini-list">
+        {opportunities.map((opportunity) => (
+          <li className="mini-row" key={opportunity.id}>
+            <span className="mini-row__icon" aria-hidden="true">
+              <Briefcase size={17} />
+            </span>
+            <div className="mini-row__body">
+              <Link
+                className="mini-row__title"
+                to={`/app/opportunities/${opportunity.slug}`}
+              >
+                {opportunity.title}
+              </Link>
+              <p className="mini-row__meta">
+                {opportunity.client} · {opportunityTypeLabel(opportunity.type)}
+              </p>
+            </div>
+            <Badge tone={savedIds.includes(opportunity.id) ? 'success' : 'blue'}>
+              {savedIds.includes(opportunity.id)
+                ? 'Saved'
+                : opportunity.paid
+                  ? formatZar(opportunity.priceZar ?? 0)
+                  : 'Practice'}
+            </Badge>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+export function PortfolioFeedbackCard({
+  project,
+}: {
+  project?: PortfolioProject
+}) {
+  if (!project) {
+    return (
+      <section className="dashboard-card">
+        <div className="dashboard-card__header">
+          <h2 className="dashboard-card__title">Portfolio feedback</h2>
+          <Link className="dashboard-card__link" to="/app/portfolio">
+            Open portfolio
+            <ArrowRight size={14} aria-hidden="true" />
+          </Link>
+        </div>
+        <EmptyState
+          icon={<BookOpen size={22} aria-hidden="true" />}
+          title="No projects yet"
+          description="Add one piece of work and submit it for a structured review."
+          action={
+            <Link className="btn btn--primary btn--sm" to="/app/portfolio">
+              Add a project
+            </Link>
+          }
+        />
+      </section>
+    )
+  }
+
+  const mentor = project.feedback
+    ? getMentorById(project.feedback.mentorId)
+    : undefined
+  const action =
+    project.status === 'reviewed'
+      ? 'View feedback'
+      : project.status === 'draft'
+        ? 'Submit project'
+        : 'Open project'
+
+  return (
+    <section className="dashboard-card">
+      <div className="dashboard-card__header">
+        <h2 className="dashboard-card__title">Portfolio feedback</h2>
+        <Link
+          className="dashboard-card__link"
+          to={`/app/portfolio/${project.id}`}
+        >
+          {action}
+          <ArrowRight size={14} aria-hidden="true" />
+        </Link>
+      </div>
+      <div className="feedback-preview">
+        <span className="feedback-preview__icon" aria-hidden="true">
+          <BookOpen size={18} />
+        </span>
+        <div className="feedback-preview__body">
+          <p className="feedback-preview__title">{project.title}</p>
+          <p className="feedback-preview__meta">
+            {project.status === 'reviewed' && mentor
+              ? `Reviewed by ${mentor.name}`
+              : project.status === 'submitted'
+                ? 'In review with a mentor'
+                : 'Ready to submit for review'}
+          </p>
+          {project.feedback ? (
+            <p className="feedback-preview__quote">
+              “{project.feedback.summary}”
+            </p>
+          ) : null}
+        </div>
+        <Badge
+          tone={
+            project.status === 'reviewed'
+              ? 'success'
+              : project.status === 'submitted'
+                ? 'warning'
+                : 'neutral'
+          }
+        >
+          {project.status === 'reviewed'
+            ? 'Feedback ready'
+            : project.status === 'submitted'
+              ? 'In review'
+              : 'Draft'}
+        </Badge>
+      </div>
+    </section>
+  )
+}
+
+export function CommunityCard({
+  latestTitle,
+  endorsementCount,
+}: {
+  latestTitle: string
+  endorsementCount: number
+}) {
+  return (
+    <section className="rail-card">
+      <h2>Community</h2>
+      <Link className="resource-item" to="/app/community">
+        <span className="resource-item__icon" aria-hidden="true">
+          <MessagesSquare size={16} />
+        </span>
+        <span>
+          <span className="resource-item__title">{latestTitle}</span>
+          <span className="resource-item__description">
+            {endorsementCount} endorsements · see more peer work
+          </span>
+        </span>
+      </Link>
+      <Link
+        className="btn btn--secondary btn--sm"
+        to="/app/community"
+        style={{ marginTop: 'var(--space-3)' }}
+      >
+        Open community
+      </Link>
     </section>
   )
 }

@@ -1,6 +1,8 @@
-# Launchpad — Moderator Test Kit
+# LaunchPad — Moderator Test Kit
 
 A lightweight kit for moderated usability testing with design and creative graduates. Expect 20–30 minutes per participant.
+
+> **Next iteration:** [`FIDELITY-PLAN.md`](FIDELITY-PLAN.md) proposes optional Tasks 4–5 and additional debrief prompts for the portfolio and opportunities features. The three tasks below remain the core test.
 
 ---
 
@@ -23,18 +25,20 @@ A lightweight kit for moderated usability testing with design and creative gradu
    - One upcoming session with Amina Yusuf in two days
    - Finding Your First Client at 2 of 4 lessons
    - Profile completeness at 65%
+   - One draft portfolio project and one reviewed project with feedback
+   - One saved practice brief
 
 Alternative from the browser console:
 
 ```js
-localStorage.removeItem('launchpad.demo.v1'); location.reload();
+localStorage.removeItem('launchpad.demo.v2'); location.reload();
 ```
 
 ---
 
 ## Introduction (read aloud)
 
-> “Thanks for helping. This is an early prototype of Launchpad, a platform for design graduates moving into freelance work. There are no wrong answers, and nothing you do can break it. I’ll give you three tasks; please think aloud as you go. I’m testing the design, not you.”
+> “Thanks for helping. This is an early prototype of LaunchPad, a platform for design graduates moving into freelance work. There are no wrong answers, and nothing you do can break it. I’ll give you three tasks; please think aloud as you go. I’m testing the design, not you.”
 
 Ask permission to record notes. Make clear that no real account, payment or booking is created.
 
@@ -88,6 +92,30 @@ Watch for:
 
 **Success:** participant locates **Saved** in the sidebar or the saved section on the dashboard.
 
+### Optional Task 4 — Portfolio feedback
+
+> “Submit a portfolio project for review and find the feedback.”
+
+**Success:** participant opens **Portfolio**, submits the draft project, and can explain one rubric score or annotation from the feedback.
+
+Watch for:
+
+- Whether the difference between draft, in review and feedback ready is clear.
+- Whether the rubric and annotations feel specific rather than generic.
+- Whether they notice the revision history.
+
+### Optional Task 5 — Opportunity
+
+> “Find a practice brief or opportunity you could apply for.”
+
+**Success:** participant finds **Opportunities**, opens a brief and can describe what they would need to produce.
+
+Watch for:
+
+- Whether practice briefs and paid work are clearly distinguished.
+- Whether the deadline and skills are easy to find.
+- Whether the apply action feels believable without a real client.
+
 ---
 
 ## Note sheet
@@ -98,6 +126,8 @@ Watch for:
 | | 2 | | | | | |
 | | 3 | | | | | |
 | | Follow-up | | | | | |
+| | 4 (optional) | | | | | |
+| | 5 (optional) | | | | | |
 
 Capture:
 
@@ -127,6 +157,10 @@ Capture:
 3. Did the mentor profiles give you enough information to book?
 4. How did you feel about the pricing examples?
 5. Would you use this for your first client? Why or why not?
+6. If you wanted a portfolio review, where would you go?
+7. Would you expect to find real projects or internships here?
+8. What would you want to happen after a mentor reviewed your portfolio?
+9. Did anything promise something the product did not deliver?
 
 ---
 
@@ -146,4 +180,6 @@ Capture:
 - Video calls, payments, messaging, notifications and calendar integration are out of scope.
 - “Join session” shows an informational message.
 - The notification button is intentionally a prototype-only control.
+- Portfolio feedback is immediate and fictional; no files are uploaded.
+- Opportunity applications and community endorsements are stored locally and contact no real client.
 - The Styleguide is internal and not linked from navigation.

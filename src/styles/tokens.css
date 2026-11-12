@@ -1,42 +1,50 @@
-/* Launchpad design tokens — the single source of truth for colour, type,
+﻿/* LaunchPad design tokens — the single source of truth for colour, type,
    spacing, shape and motion. Components consume these variables only. */
 :root {
+  /* FPA33502 brand identity */
+  --brand-white: #ffffff;
+  --brand-lavender: #c8b5f5;
+  --brand-blue: #5367e8;
+  --brand-pink: #f6a8bd;
+  --brand-purple: #7c5ce0;
+  --brand-ink: #1b163b;
+
   /* Brand */
-  --navy-900: #0e1830;
-  --navy-800: #16243d;
-  --navy-700: #1f3354;
-  --navy-600: #2a4268;
-  --teal-500: #3ec6b0;
-  --teal-600: #2fb39e;
-  --teal-700: #1d8577;
-  --teal-100: #ddf6f1;
-  --purple-500: #6c4ee3;
-  --purple-600: #5a3ecd;
-  --purple-100: #ede9fe;
+  --navy-900: var(--brand-ink);
+  --navy-800: #2a2354;
+  --navy-700: #3a316b;
+  --navy-600: #4b4184;
+  --teal-500: var(--brand-blue);
+  --teal-600: #4454d6;
+  --teal-700: #3a46b8;
+  --teal-100: #eef0ff;
+  --purple-500: var(--brand-purple);
+  --purple-600: #6847c7;
+  --purple-100: #f1ecfe;
   --amber-500: #f2b84b;
   --amber-600: #c98a1b;
   --amber-100: #fef3c7;
-  --blue-500: #2e90fa;
-  --blue-600: #1570ef;
-  --blue-100: #dbeafe;
-  --rose-500: #e31b54;
-  --rose-600: #c01048;
-  --rose-100: #ffe4e8;
+  --blue-500: #6f82f0;
+  --blue-600: var(--brand-blue);
+  --blue-100: #e8ebff;
+  --rose-500: var(--brand-pink);
+  --rose-600: #d97a94;
+  --rose-100: #fdebf1;
   --green-500: #12b76a;
   --green-600: #067647;
   --green-100: #d1fadf;
 
   /* Neutrals */
-  --ink-900: #101828;
-  --ink-800: #1d2939;
-  --ink-700: #475467;
-  --ink-600: #667085;
-  --ink-500: #98a2b3;
-  --line: #e4e7ec;
-  --line-strong: #d0d5dd;
+  --ink-900: var(--brand-ink);
+  --ink-800: #2a2354;
+  --ink-700: #4a4566;
+  --ink-600: #6b6685;
+  --ink-500: #8f8aa6;
+  --line: #e7e3f2;
+  --line-strong: #d4cfe6;
   --surface: #ffffff;
-  --surface-muted: #f9fafb;
-  --canvas: #f5f6f8;
+  --surface-muted: #faf9fd;
+  --canvas: #f7f5fb;
 
   /* Status */
   --success: #12b76a;
@@ -47,7 +55,7 @@
   --danger-soft: #fee4e2;
 
   /* Typography */
-  --font-display: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+  --font-display: 'Manrope Variable', 'Manrope', system-ui, sans-serif;
   --font-body: 'Inter Variable', 'Inter', system-ui, sans-serif;
 
   --text-xs: 0.75rem;
@@ -82,10 +90,10 @@
   --radius-pill: 999px;
 
   /* Elevation */
-  --shadow-xs: 0 1px 2px rgba(16, 24, 40, 0.05);
-  --shadow-sm: 0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06);
-  --shadow-md: 0 8px 24px rgba(14, 24, 48, 0.08);
-  --shadow-lg: 0 20px 48px rgba(14, 24, 48, 0.14);
+  --shadow-xs: 0 1px 2px rgba(27, 22, 59, 0.05);
+  --shadow-sm: 0 1px 3px rgba(27, 22, 59, 0.1), 0 1px 2px rgba(27, 22, 59, 0.06);
+  --shadow-md: 0 8px 24px rgba(27, 22, 59, 0.08);
+  --shadow-lg: 0 20px 48px rgba(27, 22, 59, 0.14);
 
   /* Motion */
   --transition: 180ms ease-out;
@@ -99,8 +107,8 @@
 }
 
 [data-accent='teal'] {
-  --accent: #0f9c88;
-  --accent-strong: #0b7f70;
+  --accent: var(--brand-blue);
+  --accent-strong: var(--teal-700);
   --accent-soft: var(--teal-100);
 }
 

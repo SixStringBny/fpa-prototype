@@ -11,9 +11,13 @@ import type {
   Booking,
   DemoState,
   LearnerProfile,
+  ModuleAccent,
   ModuleProgress,
+  PortfolioFeedback,
+  PortfolioProject,
   SessionType,
 } from '../types'
+import { createPrototypeFeedback } from '../data/portfolio'
 import { clearState, loadState, saveState } from './storage'
 import { seedState } from './seed'
 
@@ -28,11 +32,29 @@ export type BookSessionInput = {
   type: SessionType
 }
 
+export type AddPortfolioProjectInput = {
+  title: string
+  summary: string
+  role: string
+  skills: string[]
+  accent?: ModuleAccent
+}
+
 type Action =
   | { type: 'LOGIN' }
   | { type: 'LOGOUT' }
   | { type: 'SAVE_MENTOR'; mentorId: string }
   | { type: 'UNSAVE_MENTOR'; mentorId: string }
+  | { type: 'SAVE_OPPORTUNITY'; opportunityId: string }
+  | { type: 'UNSAVE_OPPORTUNITY'; opportunityId: string }
+  | { type: 'APPLY_OPPORTUNITY'; opportunityId: string }
+  | { type: 'ADD_PORTFOLIO_PROJECT'; project: PortfolioProject }
+  | {
+      type: 'SUBMIT_PORTFOLIO_PROJECT'
+      projectId: string
+      feedback: PortfolioFeedback
+    }
+  | { type: 'ENDORSE_COMMUNITY_POST'; postId: string }
   | { type: 'BOOK_SESSION'; booking: Booking }
   | { type: 'CANCEL_BOOKING'; bookingId: string }
   | { type: 'COMPLETE_LESSON'; moduleId: string; lessonId: string }
@@ -68,6 +90,65 @@ function reducer(state: DemoState, action: Action): DemoState {
         savedMentorIds: state.savedMentorIds.filter(
           (id) => id !== action.mentorId,
         ),
+      }
+
+    case 'SAVE_OPPORTUNITY':
+      if (state.savedOpportunityIds.includes(action.opportunityId)) return state
+      return {
+        ...state,
+        savedOpportunityIds: [
+          ...state.savedOpportunityIds,
+          action.opportunityId,
+        ],
+      }
+
+    case 'UNSAVE_OPPORTUNITY':
+      return {
+        ...state,
+        savedOpportunityIds: state.savedOpportunityIds.filter(
+          (id) => id !== action.opportunityId,
+        ),
+      }
+
+    case 'APPLY_OPPORTUNITY':
+      if (state.appliedOpportunityIds.includes(action.opportunityId)) return state
+      return {
+        ...state,
+        appliedOpportunityIds: [
+          ...state.appliedOpportunityIds,
+          action.opportunityId,
+        ],
+      }
+
+    case 'ADD_PORTFOLIO_PROJECT':
+      return {
+        ...state,
+        portfolioProjects: [action.project, ...state.portfolioProjects],
+      }
+
+    case 'SUBMIT_PORTFOLIO_PROJECT':
+      return {
+        ...state,
+        portfolioProjects: state.portfolioProjects.map((project) =>
+          project.id === action.projectId
+            ? {
+                ...project,
+                status: 'reviewed',
+                submittedAt: new Date().toISOString(),
+                feedback: action.feedback,
+              }
+            : project,
+        ),
+      }
+
+    case 'ENDORSE_COMMUNITY_POST':
+      if (state.endorsedCommunityPostIds.includes(action.postId)) return state
+      return {
+        ...state,
+        endorsedCommunityPostIds: [
+          ...state.endorsedCommunityPostIds,
+          action.postId,
+        ],
       }
 
     case 'BOOK_SESSION': {
@@ -153,6 +234,12 @@ type DemoContextValue = {
   logout: () => void
   saveMentor: (mentorId: string) => void
   unsaveMentor: (mentorId: string) => void
+  saveOpportunity: (opportunityId: string) => void
+  unsaveOpportunity: (opportunityId: string) => void
+  applyToOpportunity: (opportunityId: string) => void
+  addPortfolioProject: (input: AddPortfolioProjectInput) => PortfolioProject
+  submitPortfolioProject: (projectId: string) => void
+  endorseCommunityPost: (postId: string) => void
   bookSession: (input: BookSessionInput) => Booking
   cancelBooking: (bookingId: string) => void
   completeLesson: (moduleId: string, lessonId: string) => void
@@ -168,6 +255,13 @@ function newBookingId(): string {
     return crypto.randomUUID()
   }
   return `booking-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
+}
+
+function newPortfolioId(): string {
+  if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) {
+    return crypto.randomUUID()
+  }
+  return `project-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
 }
 
 export function DemoStateProvider({ children }: { children: ReactNode }) {
@@ -187,6 +281,55 @@ export function DemoStateProvider({ children }: { children: ReactNode }) {
   )
   const unsaveMentor = useCallback(
     (mentorId: string) => dispatch({ type: 'UNSAVE_MENTOR', mentorId }),
+    [],
+  )
+  const saveOpportunity = useCallback(
+    (opportunityId: string) =>
+      dispatch({ type: 'SAVE_OPPORTUNITY', opportunityId }),
+    [],
+  )
+  const unsaveOpportunity = useCallback(
+    (opportunityId: string) =>
+      dispatch({ type: 'UNSAVE_OPPORTUNITY', opportunityId }),
+    [],
+  )
+  const applyToOpportunity = useCallback(
+    (opportunityId: string) =>
+      dispatch({ type: 'APPLY_OPPORTUNITY', opportunityId }),
+    [],
+  )
+  const addPortfolioProject = useCallback(
+    (input: AddPortfolioProjectInput): PortfolioProject => {
+      const project: PortfolioProject = {
+        id: newPortfolioId(),
+        title: input.title,
+        summary: input.summary,
+        role: input.role,
+        skills: input.skills,
+        accent: input.accent ?? 'teal',
+        status: 'draft',
+      }
+      dispatch({ type: 'ADD_PORTFOLIO_PROJECT', project })
+      return project
+    },
+    [],
+  )
+  const submitPortfolioProject = useCallback(
+    (projectId: string) => {
+      const project = state.portfolioProjects.find(
+        (item) => item.id === projectId,
+      )
+      const feedback = createPrototypeFeedback(project?.title ?? 'your project')
+      dispatch({
+        type: 'SUBMIT_PORTFOLIO_PROJECT',
+        projectId,
+        feedback,
+      })
+    },
+    [state.portfolioProjects],
+  )
+  const endorseCommunityPost = useCallback(
+    (postId: string) => dispatch({ type: 'ENDORSE_COMMUNITY_POST', postId }),
     [],
   )
   const cancelBooking = useCallback(
@@ -242,6 +385,12 @@ export function DemoStateProvider({ children }: { children: ReactNode }) {
       logout,
       saveMentor,
       unsaveMentor,
+      saveOpportunity,
+      unsaveOpportunity,
+      applyToOpportunity,
+      addPortfolioProject,
+      submitPortfolioProject,
+      endorseCommunityPost,
       bookSession,
       cancelBooking,
       completeLesson,
@@ -255,6 +404,12 @@ export function DemoStateProvider({ children }: { children: ReactNode }) {
       logout,
       saveMentor,
       unsaveMentor,
+      saveOpportunity,
+      unsaveOpportunity,
+      applyToOpportunity,
+      addPortfolioProject,
+      submitPortfolioProject,
+      endorseCommunityPost,
       bookSession,
       cancelBooking,
       completeLesson,

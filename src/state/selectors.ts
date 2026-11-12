@@ -1,14 +1,20 @@
 import type {
   Booking,
+  CommunityPost,
   DemoState,
   LearnerProfile,
   Mentor,
   Module,
   ModuleProgress,
+  Opportunity,
+  PortfolioProject,
+  RoadmapMilestone,
   TailoredResource,
 } from '../types'
+import { communityPosts } from '../data/community'
 import { mentors, getMentorById } from '../data/mentors'
 import { modules } from '../data/modules'
+import { opportunities } from '../data/opportunities'
 import { effectiveBookingStatus } from '../lib/dates'
 
 export function getModuleProgress(
@@ -171,8 +177,8 @@ export function getProfileCompleteness(profile: LearnerProfile): Completeness {
   return { percent: Math.min(100, score), missing }
 }
 
-function goalKeywords(profile: LearnerProfile): string[] {
-  return profile.goals
+function profileKeywords(profile: LearnerProfile): string[] {
+  return [...profile.goals, ...profile.skills]
     .join(' ')
     .toLowerCase()
     .replace(/[^a-z0-9\s]/g, ' ')
@@ -201,7 +207,8 @@ export function getSavedMentors(state: DemoState): Mentor[] {
 export function getRecommendedMentors(
   state: DemoState,
   limit = 3,
-): Mentor[] {  const keywords = goalKeywords(state.profile)
+): Mentor[] {
+  const keywords = profileKeywords(state.profile)
   return [...mentors]
     .sort((a, b) => mentorScore(b, keywords) - mentorScore(a, keywords))
     .slice(0, limit)
@@ -211,7 +218,7 @@ export function getRecommendedModules(
   state: DemoState,
   limit = 3,
 ): Module[] {
-  const keywords = goalKeywords(state.profile)
+  const keywords = profileKeywords(state.profile)
   return [...modules]
     .filter((module) => getModuleProgressPercent(state, module) < 100)
     .sort((a, b) => {
@@ -280,4 +287,128 @@ export function getTailoredResources(state: DemoState): TailoredResource[] {
   }
 
   return resources.slice(0, 4)
+}
+
+export function getSavedOpportunities(state: DemoState): Opportunity[] {
+  return state.savedOpportunityIds
+    .map((id) => opportunities.find((opportunity) => opportunity.id === id))
+    .filter((opportunity): opportunity is Opportunity => Boolean(opportunity))
+}
+
+export function getAppliedOpportunities(state: DemoState): Opportunity[] {
+  return state.appliedOpportunityIds
+    .map((id) => opportunities.find((opportunity) => opportunity.id === id))
+    .filter((opportunity): opportunity is Opportunity => Boolean(opportunity))
+}
+
+function opportunityScore(
+  opportunity: Opportunity,
+  keywords: string[],
+): number {
+  const haystack = [
+    opportunity.title,
+    opportunity.summary,
+    opportunity.description,
+    opportunity.discipline,
+    opportunity.skills.join(' '),
+  ]
+    .join(' ')
+    .toLowerCase()
+
+  let score = opportunity.featured ? 1 : 0
+  for (const keyword of keywords) {
+    if (haystack.includes(keyword)) score += 2
+  }
+  return score
+}
+
+export function getRecommendedOpportunities(
+  state: DemoState,
+  limit = 2,
+): Opportunity[] {
+  const keywords = profileKeywords(state.profile)
+  return [...opportunities]
+    .sort((a, b) => {
+      const score = opportunityScore(b, keywords) - opportunityScore(a, keywords)
+      if (score !== 0) return score
+      return new Date(a.deadline).getTime() - new Date(b.deadline).getTime()
+    })
+    .slice(0, limit)
+}
+
+export function getPortfolioFocus(
+  state: DemoState,
+): PortfolioProject | undefined {
+  return (
+    state.portfolioProjects.find((project) => project.status === 'draft') ??
+    state.portfolioProjects.find((project) => project.status === 'submitted') ??
+    state.portfolioProjects.find((project) => project.status === 'reviewed') ??
+    state.portfolioProjects[0]
+  )
+}
+
+export function getRoadmapMilestones(state: DemoState): RoadmapMilestone[] {
+  const completeness = getProfileCompleteness(state.profile).percent
+  const hasProgress = Object.values(state.progress).some(
+    (entry) => entry.completedLessonIds.length > 0,
+  )
+  const hasBooking = state.bookings.length > 0
+  const hasPortfolioFeedback = state.portfolioProjects.some(
+    (project) => project.status === 'submitted' || project.status === 'reviewed',
+  )
+  const hasApplied = state.appliedOpportunityIds.length > 0
+
+  return [
+    {
+      id: 'profile',
+      title: 'Complete your profile',
+      description: 'Add enough detail for a mentor to prepare for your session.',
+      href: '/app/profile',
+      complete: completeness >= 80,
+    },
+    {
+      id: 'learn',
+      title: 'Start a module',
+      description: 'Pick the question that is most urgent right now.',
+      href: '/app/learn',
+      complete: hasProgress,
+    },
+    {
+      id: 'mentor',
+      title: 'Book a mentor',
+      description: 'Bring a portfolio, a quote or a client problem.',
+      href: '/app/mentors',
+      complete: hasBooking,
+    },
+    {
+      id: 'portfolio',
+      title: 'Submit a portfolio project',
+      description: 'Get structured feedback on one piece of work.',
+      href: '/app/portfolio',
+      complete: hasPortfolioFeedback,
+    },
+    {
+      id: 'opportunity',
+      title: 'Apply to an opportunity',
+      description: 'Use a practice brief to build evidence for your portfolio.',
+      href: '/app/opportunities',
+      complete: hasApplied,
+    },
+  ]
+}
+
+export type CommunityPostView = CommunityPost & {
+  endorsed: boolean
+  endorsementCount: number
+}
+
+export function getCommunityPosts(state: DemoState): CommunityPostView[] {
+  return communityPosts.map((post) => {
+    const endorsed = state.endorsedCommunityPostIds.includes(post.id)
+    return {
+      ...post,
+      endorsed,
+      endorsementCount: post.endorsements + (endorsed ? 1 : 0),
+    }
+  })
 }

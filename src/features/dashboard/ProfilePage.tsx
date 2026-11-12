@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
-import { CheckCircle2, MapPin, Plus, X } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { CheckCircle2, FolderOpen, MapPin, Plus, X } from 'lucide-react'
 import type { LearnerProfile } from '../../types'
 import { avatarOptions } from '../../data/user'
 import { asset } from '../../lib/assets'
@@ -299,6 +300,18 @@ export function ProfilePage() {
               placeholder="Add a skill"
             />
           </div>
+        </section>
+
+        <section className="profile-section-card">
+          <h2>Portfolio</h2>
+          <p className="profile-section-card__hint">
+            Keep a small record of your work and submit a project for structured
+            mentor feedback.
+          </p>
+          <Link className="btn btn--secondary" to="/app/portfolio">
+            <FolderOpen size={17} aria-hidden="true" />
+            Open my portfolio
+          </Link>
         </section>
 
         <section className="profile-section-card">

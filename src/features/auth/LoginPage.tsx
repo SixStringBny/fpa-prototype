@@ -89,7 +89,7 @@ export function LoginPage() {
             style={{ display: 'inline-flex', gap: 6, marginBottom: 'var(--space-8)' }}
           >
             <ArrowLeft size={16} aria-hidden="true" />
-            Back to Launchpad
+            Back to LaunchPad
           </Link>
 
           <h1>Log in or create your account</h1>
@@ -155,7 +155,7 @@ export function LoginPage() {
                 aria-hidden="true"
                 style={{ display: 'inline', marginRight: 6 }}
               />
-              Demo data lives in <code>launchpad.demo.v1</code>.
+              Demo data lives in <code>launchpad.demo.v2</code>.
             </p>
             <p style={{ marginTop: 'var(--space-2)' }}>
               <button

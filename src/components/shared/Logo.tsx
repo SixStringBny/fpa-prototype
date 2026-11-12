@@ -14,13 +14,15 @@ export function Logo({ light = false, to = '/', className, onClick }: LogoProps)
     <Link
       to={to}
       className={cn('brand', light && 'brand--light', className)}
-      aria-label="Launchpad home"
+      aria-label="LaunchPad home"
       onClick={onClick}
     >
       <span className="brand__mark" aria-hidden="true">
         <Rocket size={20} strokeWidth={2.2} />
       </span>
-      <span>Launchpad</span>
+      <span>
+        Launch<span className="brand__accent">Pad</span>
+      </span>
     </Link>
   )
 }

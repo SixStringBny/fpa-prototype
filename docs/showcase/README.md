@@ -1,8 +1,8 @@
-# Launchpad — visual tour
+# LaunchPad — visual tour
 
-![Launchpad end-to-end showcase](launchpad-showcase.gif)
+![LaunchPad end-to-end showcase](launchpad-showcase.gif)
 
-A screenshot walkthrough of the prototype in the order a first-time user meets it: discover, sign in, learn, match, book and keep track. Captured from the local build on 9 November 2026. All mentors, reviews, bookings and learner details are fictional.
+A screenshot walkthrough of the prototype in the order a first-time user meets it: discover, sign in, learn, match, book, keep track and use the hub. Captured from the local build in November 2026. All mentors, reviews, bookings, opportunities and learner details are fictional.
 
 The GIF above is the short version. The sections below break the same journey into stills and explain the user intent behind each screen.
 
@@ -44,7 +44,7 @@ The first core task is to find *Pricing Your Creative Work* and begin the first 
 
 ![Dashboard](screens/06-dashboard.png)
 
-The dashboard answers “what now?” in one screen: continue learning, the next session, saved mentors and profile completeness. The seeded state has *Finding Your First Client* at 2 of 4 lessons.
+The dashboard answers “what now?” in one screen: the five-step path, continue learning, the next session, portfolio feedback, opportunities and profile completeness. The seeded state has *Finding Your First Client* at 2 of 4 lessons.
 
 ![Learn catalogue in the app](screens/07-app-learn.png)
 
@@ -120,7 +120,37 @@ My Profile shows 65% completeness and names the exact fields still missing, whic
 
 ---
 
-## 7. Mobile
+## 7. The hub
+
+The learning and mentorship journey is the core. The hub adds the practice, feedback and people that make the research concept distinctive.
+
+![Opportunities](screens/24-opportunities.png)
+
+Opportunities brings practice briefs, internships and paid entry-level projects into one place. Each card shows the type, level, deadline, skills and whether it is paid or practice.
+
+![Opportunity brief](screens/25-opportunity-brief.png)
+
+The brief page explains what the user will produce, the skills involved and how to use the outcome in a portfolio. Applying is a mock action with a clear prototype note.
+
+![Portfolio](screens/26-portfolio.png)
+
+My Portfolio holds a small record of work. A draft can be submitted for review; a reviewed project shows the feedback state immediately.
+
+![Portfolio feedback](screens/27-portfolio-feedback.png)
+
+Feedback is structured rather than vague: a mentor summary, a four-part rubric with scores, specific annotations and a revision history. The prototype makes the review immediate so the loop can be tested end to end.
+
+![Your path](screens/28-roadmap.png)
+
+Your Path turns the dashboard into a sequence: complete the profile, start a module, book a mentor, submit a project and apply to an opportunity. Progress is derived from real state, so the path updates as the user acts.
+
+![Community](screens/29-community.png)
+
+Community shows peer work, a monthly challenge and a lightweight endorsement action. It earns the original “Learn. Network. Build. Earn.” promise without pretending to be a messaging product.
+
+---
+
+## 8. Mobile
 
 The same core journey holds at 390 px.
 
@@ -145,6 +175,11 @@ This tour follows the same tasks used in the moderator kit:
 1. **Learn** — find *Pricing Your Creative Work* from the dashboard and start the first lesson.
 2. **Match** — find a mentor who offers portfolio feedback and open their profile.
 3. **Book** — book a 30-minute session and find it in Sessions.
+
+Optional tasks after the core journey:
+
+4. **Portfolio** — submit a project for review and find the feedback.
+5. **Opportunity** — find a practice brief or opportunity you could apply for.
 
 See [`docs/TEST-KIT.md`](../TEST-KIT.md) for the full moderator script, success criteria and note sheet.
 

@@ -3,9 +3,12 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import {
   BookOpen,
   Bookmark,
+  Briefcase,
   CalendarDays,
+  FolderOpen,
   Home,
   LogOut,
+  MessagesSquare,
   RotateCcw,
   UserCircle,
   Users,
@@ -21,7 +24,17 @@ import { IconButton } from '../ui/IconButton'
 import { useToast } from '../ui/Toast'
 import { Logo } from '../shared/Logo'
 
-const navIcons = [Home, BookOpen, Users, CalendarDays, Bookmark, UserCircle]
+const navIcons = [
+  Home,
+  BookOpen,
+  Users,
+  Briefcase,
+  FolderOpen,
+  CalendarDays,
+  Bookmark,
+  MessagesSquare,
+  UserCircle,
+]
 
 type MobileNavProps = {
   open: boolean
@@ -73,7 +86,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
         }}
       >
         <div className="mobile-nav__header">
-          <Logo light to="/app/dashboard" onClick={onClose} />
+          <Logo to="/app/dashboard" onClick={onClose} />
           <IconButton
             label="Close navigation"
             className="mobile-nav__close"
@@ -145,7 +158,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
         open={resetOpen}
         onClose={() => setResetOpen(false)}
         title="Reset the demo?"
-        description="This clears saved mentors, bookings, lesson progress and profile edits, then restores the original seed data."
+        description="This clears saved mentors, bookings, lesson progress, portfolio projects, saved opportunities and profile edits, then restores the original seed data."
         footer={
           <>
             <Button variant="secondary" onClick={() => setResetOpen(false)}>

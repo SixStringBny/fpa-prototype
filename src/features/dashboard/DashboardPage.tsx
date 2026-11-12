@@ -3,14 +3,18 @@ import { BookOpen, CalendarDays, CheckCircle2, Users } from 'lucide-react'
 import { getMentorById } from '../../data/mentors'
 import { useDemo } from '../../state/demo-state'
 import {
+  getCommunityPosts,
   getCompletedLessonTotal,
   getContinueLearning,
   getModulesInProgress,
   getModuleCompletedCount,
   getModuleProgressPercent,
   getNextUpcomingBooking,
+  getPortfolioFocus,
   getProfileCompleteness,
   getRecommendedMentors,
+  getRecommendedOpportunities,
+  getRoadmapMilestones,
   getSavedMentors,
   getTailoredResources,
   getUpcomingBookings,
@@ -23,6 +27,10 @@ import { SavedMentorsCard } from './dashboard-cards'
 import { RecommendedMentorsCard } from './dashboard-cards'
 import { TailoredResourcesCard } from './dashboard-cards'
 import { QuickLinksCard } from './dashboard-cards'
+import { RoadmapCard } from './dashboard-cards'
+import { OpportunitiesCard } from './dashboard-cards'
+import { PortfolioFeedbackCard } from './dashboard-cards'
+import { CommunityCard } from './dashboard-cards'
 import { EmptyState } from '../../components/ui/EmptyState'
 import { useToast } from '../../components/ui/Toast'
 
@@ -42,6 +50,10 @@ export function DashboardPage() {
   const lessonsCompleted = getCompletedLessonTotal(state)
   const modulesInProgress = getModulesInProgress(state)
   const upcomingSessions = getUpcomingBookings(state)
+  const roadmap = getRoadmapMilestones(state)
+  const recommendedOpportunities = getRecommendedOpportunities(state, 2)
+  const portfolioFocus = getPortfolioFocus(state)
+  const communityPosts = getCommunityPosts(state)
 
   const continueHref = continueLearning
     ? continueLearning.nextLesson
@@ -70,6 +82,8 @@ export function DashboardPage() {
 
       <div className="dashboard-grid">
         <div className="dashboard-main">
+          <RoadmapCard milestones={roadmap} />
+
           {continueLearning ? (
             <ContinueLearningCard
               module={continueLearning.module}
@@ -131,6 +145,13 @@ export function DashboardPage() {
             </section>
           )}
 
+          <PortfolioFeedbackCard project={portfolioFocus} />
+
+          <OpportunitiesCard
+            opportunities={recommendedOpportunities}
+            savedIds={state.savedOpportunityIds}
+          />
+
           {savedMentors.length > 0 ? (
             <SavedMentorsCard mentors={savedMentors.slice(0, 3)} />
           ) : (
@@ -163,6 +184,12 @@ export function DashboardPage() {
         <div className="dashboard-rail">
           <TailoredResourcesCard resources={resources} />
           <QuickLinksCard profileComplete={completeness.percent >= 100} />
+          <CommunityCard
+            latestTitle={
+              communityPosts[0]?.projectTitle ?? 'See what other graduates are making'
+            }
+            endorsementCount={communityPosts[0]?.endorsementCount ?? 0}
+          />
           <section className="rail-card">
             <h2>Demo tip</h2>
             <p className="text-sm text-muted">
