@@ -2,7 +2,7 @@
 
 Live status for the Launchpad prototype. See [`IMPLEMENTATION-PLAN.md`](IMPLEMENTATION-PLAN.md) for scope and acceptance criteria.
 
-Last updated: 9 November 2026
+Last updated: 12 November 2026
 
 | Phase | Issue | Branch | Status | Demo checkpoint | Notes |
 |---|---|---|---|---|---|
@@ -41,6 +41,26 @@ Issue numbers are not sequential because three issues were retried after a shell
 - [x] Tasks 1–3 pass on the hosted build
 - [x] Hosted build has no console errors or broken images
 - [x] Tag `v0.1.0`
+
+## Fidelity pass — next iteration
+
+The research alignment review is in [`RESEARCH-ALIGNMENT.md`](RESEARCH-ALIGNMENT.md) and the phased plan is in [`FIDELITY-PLAN.md`](FIDELITY-PLAN.md). The review uses all four source documents: FPA33501, FPA33502, the original prototype PDF and the low-fidelity sketch.
+
+The short version:
+
+- The build is a strong realisation of the FPA33501 learning and mentorship concept, and an approximate 80% fit against the original prototype and sketch.
+- It is not yet a faithful realisation of the FPA33502 refinement. The portfolio feedback loop, opportunities and community layers are missing, and the visual identity predates the FPA33502 brand.
+- The next iteration keeps the working core and adds, in order: truth fixes, brand alignment, opportunities, portfolio feedback and a roadmap. Community is optional and post-test.
+
+Decisions for the fidelity pass:
+
+- **Source hierarchy.** FPA33502 is the latest refinement; FPA33501 is the concept and research authority; the old PDF and sketch remain the baseline for voice and IA.
+- **Brand.** Adopt the FPA33502 identity — white, lavender, blue and pink; Manrope headings; "LaunchPad" — or record a deliberate deviation.
+- **App development.** Keep React and Vite; record the Framer choice as a documented process deviation.
+- **Onboarding.** Add a lightweight roadmap, not an onboarding questionnaire.
+- **Opportunities and portfolio feedback.** Add lightweight, seeded slices; no backend, payments or real applications.
+- **Community.** Deferred to Phase 7, or recorded as an explicit non-goal.
+- **Storage.** Bump to `launchpad.demo.v2` if new persisted arrays are added.
 
 ## Decisions recorded
 

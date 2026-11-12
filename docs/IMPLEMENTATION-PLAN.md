@@ -1,12 +1,13 @@
 # Launchpad Prototype — Implementation Plan
 
 - **Repo:** `SixStringBny/fpa-prototype`
-- **Product name:** Launchpad (single casing)
-- **Status:** Agreed scope; ready to land in repo and create tracking issues
+- **Product name:** LaunchPad (FPA33502 casing); the shipped v0.1.0 build uses "Launchpad" until the fidelity plan's Phase 2 brand pass
+- **Status:** v0.1.0 shipped; the next iteration is the fidelity pass in [`FIDELITY-PLAN.md`](FIDELITY-PLAN.md)
 - **Target effort:** 3–5 working days
 - **Primary purpose:** Moderated usability testing with design/creative graduates
 - **Secondary purpose:** Portfolio/demo piece
-- **Source material:** `design-docs/fpa-prototype-old.pdf`, `design-docs/Low-fidelity-sketch-fpa-prototype.png`
+- **Source material:** `design-docs/FPA33501_Process.pdf`, `design-docs/BenjaminMcCusker_FPA33502_24ZTF40_Process.pdf`, `design-docs/fpa-prototype-old.pdf`, `design-docs/Low-fidelity-sketch-fpa-prototype.png`
+- **Research alignment:** [`RESEARCH-ALIGNMENT.md`](RESEARCH-ALIGNMENT.md) records how the prototype maps to the research; [`FIDELITY-PLAN.md`](FIDELITY-PLAN.md) is the next iteration for closing the gaps.
 
 ---
 
@@ -65,6 +66,8 @@ A participant can complete the three core tasks without facilitator intervention
 ---
 
 ## 3. Agreed decisions
+
+> **Fidelity-pass note:** Decisions 6, 7, 18, 20 and 22 are revisited in [`FIDELITY-PLAN.md`](FIDELITY-PLAN.md). The next iteration adds a lightweight roadmap and a brand alignment pass; the alternative visual variant remains deferred.
 
 | # | Decision | Choice |
 |---|---|---|

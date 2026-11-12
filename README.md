@@ -134,3 +134,5 @@ All mentors, reviews, companies, testimonials and learner details are fictional.
 Photography is from Unsplash under the Unsplash License. Avatars are generated DiceBear `avataaars` SVGs. Fonts are licensed under the SIL Open Font License and icons under the ISC License. See [`CREDITS.md`](CREDITS.md) for the full list.
 
 The implementation plan and phase status live in [`docs/IMPLEMENTATION-PLAN.md`](docs/IMPLEMENTATION-PLAN.md) and [`docs/PROGRESS.md`](docs/PROGRESS.md).
+
+The research trail is recorded in [`docs/RESEARCH-ALIGNMENT.md`](docs/RESEARCH-ALIGNMENT.md), with the next iteration in [`docs/FIDELITY-PLAN.md`](docs/FIDELITY-PLAN.md). The primary sources are the two process PDFs in `design-docs/` — FPA33501 (concept development) and FPA33502 (evaluation and refinement) — together with the original prototype PDF and low-fidelity sketch.

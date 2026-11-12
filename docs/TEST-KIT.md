@@ -2,6 +2,8 @@
 
 A lightweight kit for moderated usability testing with design and creative graduates. Expect 20–30 minutes per participant.
 
+> **Next iteration:** [`FIDELITY-PLAN.md`](FIDELITY-PLAN.md) proposes optional Tasks 4–5 and additional debrief prompts for the portfolio and opportunities features. The three tasks below remain the core test.
+
 ---
 
 ## Before the session
