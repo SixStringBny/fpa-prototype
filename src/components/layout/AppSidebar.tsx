@@ -3,9 +3,12 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import {
   BookOpen,
   Bookmark,
+  Briefcase,
   CalendarDays,
+  FolderOpen,
   Home,
   LogOut,
+  MessagesSquare,
   RotateCcw,
   UserCircle,
   Users,
@@ -19,7 +22,17 @@ import { Button } from '../ui/Button'
 import { useToast } from '../ui/Toast'
 import { Logo } from '../shared/Logo'
 
-const navIcons = [Home, BookOpen, Users, CalendarDays, Bookmark, UserCircle]
+const navIcons = [
+  Home,
+  BookOpen,
+  Users,
+  Briefcase,
+  FolderOpen,
+  CalendarDays,
+  Bookmark,
+  MessagesSquare,
+  UserCircle,
+]
 
 export function AppSidebar() {
   const { state, logout, resetDemo } = useDemo()
@@ -40,7 +53,7 @@ export function AppSidebar() {
     <>
       <aside className="app-sidebar">
         <div className="app-sidebar__brand">
-          <Logo light to="/app/dashboard" />
+          <Logo to="/app/dashboard" />
         </div>
 
         <p className="app-sidebar__label">Your space</p>
@@ -105,7 +118,7 @@ export function AppSidebar() {
         open={resetOpen}
         onClose={() => setResetOpen(false)}
         title="Reset the demo?"
-        description="This clears saved mentors, bookings, lesson progress and profile edits, then restores the original seed data."
+        description="This clears saved mentors, bookings, lesson progress, portfolio projects, saved opportunities and profile edits, then restores the original seed data."
         footer={
           <>
             <Button variant="secondary" onClick={() => setResetOpen(false)}>

@@ -1,11 +1,13 @@
-# Launchpad — Research Alignment Review
+# LaunchPad — Research Alignment Review
 
-- **Status:** Formal review
+- **Status:** Formal review of the pre-fidelity build; implementation status is tracked in [`PROGRESS.md`](PROGRESS.md)
 - **Prepared:** 12 November 2026
-- **Prototype reviewed:** Launchpad v0.1.0 (React 19 + Vite 8 + TypeScript)
+- **Prototype reviewed:** LaunchPad v0.1.0 (React 19 + Vite 8 + TypeScript)
 - **Review basis:** `FPA33501_Process.pdf`, `BenjaminMcCusker_FPA33502_24ZTF40_Process.pdf`, `fpa-prototype-old.pdf`, `Low-fidelity-sketch-fpa-prototype.png`
 - **Companion document:** [`FIDELITY-PLAN.md`](FIDELITY-PLAN.md)
 - **Related documents:** [`IMPLEMENTATION-PLAN.md`](IMPLEMENTATION-PLAN.md), [`PROGRESS.md`](PROGRESS.md), [`TEST-KIT.md`](TEST-KIT.md)
+
+> **Post-review note:** the fidelity pass has since implemented the high-severity gaps identified here — the FPA33502 brand, opportunities, portfolio feedback, the roadmap and the community showcase — on the `fidelity-pass` branch. This document remains the baseline review of v0.1.0 so the before/after comparison stays honest. Current status is in [`PROGRESS.md`](PROGRESS.md).
 
 ---
 

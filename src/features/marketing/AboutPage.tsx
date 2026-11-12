@@ -11,10 +11,10 @@ export function AboutPage() {
       <section className="page-hero">
         <Container className="page-hero__inner">
           <div>
-            <span className="eyebrow">About Launchpad</span>
+            <span className="eyebrow">About LaunchPad</span>
             <h1>Helping creative graduates make the leap</h1>
             <p>
-              Launchpad exists to close the gap between what design school
+              LaunchPad exists to close the gap between what design school
               teaches and what a first freelance client expects. Learn at your
               pace, then talk to someone who has done it before.
             </p>
@@ -52,9 +52,10 @@ export function AboutPage() {
               usually learned the hard way.
             </p>
             <p>
-              Launchpad brings those lessons into one place: short, practical
-              modules written in plain language, plus mentorship from people
-              who are already doing the work. No business jargon, no get-rich
+              LaunchPad brings those lessons into one place: short, practical
+              modules written in plain language, mentorship from people who are
+              already doing the work, practice briefs to build evidence, and
+              structured portfolio feedback. No business jargon, no get-rich
               promises, no pretend certainty.
             </p>
             <p>

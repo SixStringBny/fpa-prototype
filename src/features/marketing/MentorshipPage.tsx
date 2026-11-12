@@ -98,7 +98,7 @@ export function MentorshipPage() {
           <SectionHeading
             eyebrow="What to expect"
             title="Useful, human support — not a lecture"
-            description="Mentorship on Launchpad is practical. You bring a real question; the mentor helps you make a decision."
+            description="Mentorship on LaunchPad is practical. You bring a real question; the mentor helps you make a decision."
           />
           <div className="feature-grid">
             {benefits.map((benefit) => {

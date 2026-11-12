@@ -15,7 +15,7 @@ const OUT_DIR = path.join(ROOT, 'docs', 'showcase')
 const SCREEN_DIR = path.join(OUT_DIR, 'screens')
 const GIF_FILE = path.join(OUT_DIR, 'launchpad-showcase.gif')
 
-const SEED_KEY = 'launchpad.demo.v1'
+const SEED_KEY = 'launchpad.demo.v2'
 const FIXED_TIME = new Date('2026-11-09T09:00:00+02:00')
 const DESKTOP = { width: 1440, height: 900 }
 const MOBILE = { width: 390, height: 844 }
@@ -314,6 +314,24 @@ async function captureStills(browser, base) {
   await visit(page, '/app/profile', 'h1')
   await capture(page, '20-profile.png')
 
+  await visit(page, '/app/opportunities', 'h1')
+  await capture(page, '24-opportunities.png')
+
+  await visit(page, '/app/opportunities/cafe-menu-refresh', 'h1')
+  await capture(page, '25-opportunity-brief.png')
+
+  await visit(page, '/app/portfolio', 'h1')
+  await capture(page, '26-portfolio.png')
+
+  await visit(page, '/app/portfolio/project-student-brand', 'h1')
+  await capture(page, '27-portfolio-feedback.png', { scrollTo: '.feedback-panel' })
+
+  await visit(page, '/app/roadmap', 'h1')
+  await capture(page, '28-roadmap.png')
+
+  await visit(page, '/app/community', 'h1')
+  await capture(page, '29-community.png')
+
   await context.close()
 }
 
@@ -361,7 +379,7 @@ const OVERLAY_CSS = `
   flex: 0 0 auto;
   place-items: center;
   border-radius: 50%;
-  background: #0f766e;
+  background: #5367e8;
   font-size: 13px;
   font-weight: 700;
 }
@@ -403,7 +421,7 @@ const OVERLAY_CSS = `
   width: 12px;
   height: 12px;
   border-color: #fff;
-  background: #0f766e;
+  background: #5367e8;
 }
 `
 
@@ -827,7 +845,7 @@ async function captureGif(browser, base) {
     timeout: 6000,
   })
   await sleep(300)
-  await setCaption(page, 6, 'Learn. Match. Book.', 'Launchpad — start with confidence')
+  await setCaption(page, 6, 'Learn. Match. Book.', 'LaunchPad — start with confidence')
   await sleep(1200)
 
   await session.send('Page.stopScreencast').catch(() => {})

@@ -11,8 +11,9 @@ export function MarketingFooter() {
           <div className="marketing-footer__brand">
             <Logo light />
             <p>
-              Self-paced learning and mentorship for design and creative
-              graduates moving into freelance work.
+              Self-paced learning, mentorship, portfolio feedback and practical
+              briefs for design and creative graduates moving into freelance
+              work.
             </p>
           </div>
 
@@ -43,7 +44,7 @@ export function MarketingFooter() {
           </div>
 
           <div>
-            <h2 className="marketing-footer__heading">Launchpad</h2>
+            <h2 className="marketing-footer__heading">LaunchPad</h2>
             <ul className="marketing-footer__list">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
@@ -57,7 +58,7 @@ export function MarketingFooter() {
         </div>
 
         <div className="marketing-footer__bottom">
-          <p>© {new Date().getFullYear()} Launchpad. A fictional prototype.</p>
+          <p>© {new Date().getFullYear()} LaunchPad. A fictional prototype.</p>
           <span className="marketing-footer__prototype">
             Prototype only · no real accounts or payments
           </span>

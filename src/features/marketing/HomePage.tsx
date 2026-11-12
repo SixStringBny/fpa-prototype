@@ -3,6 +3,9 @@ import {
   ArrowRight,
   BadgeCheck,
   BookOpen,
+  Briefcase,
+  FolderOpen,
+  MessagesSquare,
   Sparkles,
   Users,
 } from 'lucide-react'
@@ -50,9 +53,9 @@ export function HomePage() {
             <span className="eyebrow">Learn. Network. Build. Earn.</span>
             <h1>Start your freelance career with confidence</h1>
             <p className="hero__lede">
-              Self-paced modules and honest mentorship for design and creative
-              graduates. Learn how to find clients, price your work and run
-              projects — without guessing.
+              Self-paced modules, honest mentorship and structured portfolio
+              feedback for design and creative graduates. Learn how to find
+              clients, price your work and run projects — without guessing.
             </p>
             <div className="hero__actions">
               <Link className="btn btn--primary btn--lg" to="/login">
@@ -75,6 +78,10 @@ export function HomePage() {
               <span className="hero__note-item">
                 <BadgeCheck size={16} aria-hidden="true" />
                 Mentors who have been there
+              </span>
+              <span className="hero__note-item">
+                <BadgeCheck size={16} aria-hidden="true" />
+                Portfolio feedback and practice briefs
               </span>
             </div>
           </div>
@@ -171,9 +178,63 @@ export function HomePage() {
       <section className="section section--canvas">
         <Container>
           <SectionHeading
-            eyebrow="Why Launchpad"
+            eyebrow="The hub"
+            title="More than a course: practice, feedback and people"
+            description="The learning gets you started. The practice briefs, portfolio reviews and community help you keep going."
+          />
+          <div className="feature-grid">
+            <article className="value-card">
+              <div className="value-card__icon" aria-hidden="true">
+                <Briefcase size={20} />
+              </div>
+              <h3>Practice briefs</h3>
+              <p>
+                Small, realistic briefs that give you something to make — and
+                something to show.
+              </p>
+              <Link className="inline-link" to="/app/opportunities">
+                Browse opportunities
+                <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </article>
+            <article className="value-card">
+              <div className="value-card__icon" aria-hidden="true">
+                <FolderOpen size={20} />
+              </div>
+              <h3>Portfolio feedback</h3>
+              <p>
+                Submit a project, get a rubric and specific annotations, then
+                revise it with a clear next step.
+              </p>
+              <Link className="inline-link" to="/app/portfolio">
+                See how feedback works
+                <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </article>
+            <article className="value-card">
+              <div className="value-card__icon" aria-hidden="true">
+                <MessagesSquare size={20} />
+              </div>
+              <h3>Community</h3>
+              <p>
+                See what other graduates are making, borrow an idea and endorse
+                the work that helped you.
+              </p>
+              <Link className="inline-link" to="/app/community">
+                Visit the community
+                <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </article>
+          </div>
+        </Container>
+      </section>
+
+      <section className="section">
+        <Container>
+          <SectionHeading
+            eyebrow="Why LaunchPad"
             title="Built for the first step, not the finished studio"
-            description="Launchpad is designed for graduates entering freelance work. The content is specific, practical and free of jargon."
+            description="LaunchPad is designed for graduates entering freelance work. The content is specific, practical and free of jargon."
           />
           <div className="feature-grid">
             {values.map((value) => (

@@ -1,11 +1,13 @@
-# Launchpad — Phased Fidelity Plan
+# LaunchPad — Phased Fidelity Plan
 
-- **Status:** Proposed
+- **Status:** Implemented; verification is tracked in [`PROGRESS.md`](PROGRESS.md)
 - **Prepared:** 12 November 2026
 - **Basis:** [`RESEARCH-ALIGNMENT.md`](RESEARCH-ALIGNMENT.md)
 - **Target:** 5–7 working days for the core fidelity pass; Phase 7 is optional and post-test
-- **Current prototype:** Launchpad v0.1.0
+- **Current prototype:** LaunchPad v0.2.0
 - **Related documents:** [`IMPLEMENTATION-PLAN.md`](IMPLEMENTATION-PLAN.md), [`PROGRESS.md`](PROGRESS.md), [`TEST-KIT.md`](TEST-KIT.md)
+
+> The task checklists below are retained as the plan of record. Implementation and verification status live in [`PROGRESS.md`](PROGRESS.md).
 
 ---
 

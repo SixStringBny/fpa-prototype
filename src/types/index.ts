@@ -108,13 +108,96 @@ export type ModuleProgress = {
   updatedAt: string
 }
 
+export type OpportunityType = 'practice-brief' | 'internship' | 'project'
+
+export type Opportunity = {
+  id: string
+  slug: string
+  title: string
+  type: OpportunityType
+  client: string
+  discipline: string
+  level: 'Beginner' | 'Intermediate'
+  paid: boolean
+  priceZar?: number
+  deadline: string
+  summary: string
+  description: string
+  deliverables: string[]
+  skills: string[]
+  featured: boolean
+}
+
+export type PortfolioStatus = 'draft' | 'submitted' | 'reviewed'
+
+export type FeedbackCriterion = {
+  criterion: string
+  score: number
+  comment: string
+}
+
+export type FeedbackAnnotation = {
+  area: string
+  note: string
+}
+
+export type RevisionEntry = {
+  version: number
+  date: string
+  note: string
+}
+
+export type PortfolioFeedback = {
+  mentorId: string
+  summary: string
+  rubric: FeedbackCriterion[]
+  annotations: FeedbackAnnotation[]
+  revisionHistory: RevisionEntry[]
+}
+
+export type PortfolioProject = {
+  id: string
+  title: string
+  summary: string
+  role: string
+  skills: string[]
+  accent: ModuleAccent
+  status: PortfolioStatus
+  submittedAt?: string
+  feedback?: PortfolioFeedback
+}
+
+export type CommunityPost = {
+  id: string
+  author: string
+  role: string
+  avatar: string
+  projectTitle: string
+  summary: string
+  tags: string[]
+  endorsements: number
+  accent: ModuleAccent
+}
+
+export type RoadmapMilestone = {
+  id: string
+  title: string
+  description: string
+  href: string
+  complete: boolean
+}
+
 export type DemoState = {
-  version: 1
+  version: 2
   auth: { isAuthenticated: boolean; userId: 'test-user' }
   profile: LearnerProfile
   savedMentorIds: string[]
   bookings: Booking[]
   progress: Record<string, ModuleProgress>
+  savedOpportunityIds: string[]
+  appliedOpportunityIds: string[]
+  portfolioProjects: PortfolioProject[]
+  endorsedCommunityPostIds: string[]
   seededAt: string
 }
 

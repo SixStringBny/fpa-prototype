@@ -18,10 +18,20 @@ function titleFor(pathname: string): string {
     if (parts.length > 3) return 'Mentor profile'
     return 'Mentor matching'
   }
+  if (pathname.startsWith('/app/opportunities')) {
+    return pathname === '/app/opportunities'
+      ? 'Opportunities'
+      : 'Opportunity brief'
+  }
+  if (pathname.startsWith('/app/portfolio')) {
+    return pathname === '/app/portfolio' ? 'My portfolio' : 'Project feedback'
+  }
+  if (pathname.startsWith('/app/roadmap')) return 'Your path'
+  if (pathname.startsWith('/app/community')) return 'Community'
   if (pathname.startsWith('/app/sessions')) return 'Sessions'
   if (pathname.startsWith('/app/saved')) return 'Saved mentors'
   if (pathname.startsWith('/app/profile')) return 'My Profile'
-  return 'Launchpad'
+  return 'LaunchPad'
 }
 
 export function AppLayout() {

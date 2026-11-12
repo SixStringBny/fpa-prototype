@@ -1,4 +1,4 @@
-/* Base reset and shared components. Layout and page styles live in
+﻿/* Base reset and shared components. Layout and page styles live in
    layout.css and pages.css, imported after this file. */
 
 *,
@@ -256,7 +256,7 @@ ol {
 }
 
 .section--navy .eyebrow {
-  color: var(--teal-500);
+  color: var(--brand-lavender);
 }
 
 .section-heading {
@@ -329,8 +329,8 @@ ol {
 
 .btn--primary {
   background: var(--teal-500);
-  color: var(--navy-900);
-  box-shadow: 0 6px 16px rgba(62, 198, 176, 0.28);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(83, 103, 232, 0.28);
 }
 
 .btn--primary:hover {
@@ -743,7 +743,7 @@ ol {
 .textarea:focus,
 .select:focus {
   border-color: var(--teal-600);
-  box-shadow: 0 0 0 3px rgba(62, 198, 176, 0.25);
+  box-shadow: 0 0 0 3px rgba(83, 103, 232, 0.25);
   outline: none;
 }
 
@@ -810,7 +810,7 @@ ol {
 }
 
 .dialog::backdrop {
-  background: rgba(14, 24, 48, 0.55);
+  background: rgba(27, 22, 59, 0.55);
   backdrop-filter: blur(2px);
 }
 
